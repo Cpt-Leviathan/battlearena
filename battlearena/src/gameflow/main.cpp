@@ -6,10 +6,11 @@ int main(int argc, char **args) {
     gameflow *flow = new gameflow();
     settings->initialize(800, 600);
     flow->initialize(settings);
+    //drawAxis();
     while(flow->getIsRunning()){
         flow->updateFlow();
     }
-    settings->clear();
     flow->cleanFlow();
+    settings->clear();
     return 0;
 }

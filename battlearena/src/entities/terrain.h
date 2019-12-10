@@ -12,7 +12,7 @@ private:
     double width, length, tileWidth, tileLength;
     GLuint idListe;
     GLuint idGroundTex, idWallTex;
-    int divisionsX, divisionsZ;  //nombre de divisions pour les murs sur les axes x et z
+    //int divisionsX, divisionsZ;  //nombre de divisions pour les murs sur les axes x et z
     std::vector<GLuint>* walls;
 public:
     terrain();

@@ -26,7 +26,7 @@ void terrain::readFile(std::string path){
     else {
         std::string line;
         int nbLine = 0;
-        std::getline(infile, line);
+        //std::getline(infile, line);
         while (std::getline(infile, line)) {
             width = tileWidth * line.size();
             nbLine++;
@@ -41,15 +41,15 @@ void terrain::readFile(std::string path){
 void terrain::createTerrain(){
     idListe = glGenLists(1);
     glNewList(idListe, GL_COMPILE);
-        glPushMatrix();
+        //glPushMatrix();
         glBindTexture(GL_TEXTURE_2D, idGroundTex);
         glBegin(GL_QUADS);
-            glVertex3d(-width / 2, 0, -length / 2);
-            glVertex3d(width / 2, 0, -length / 2);
-            glVertex3d(width / 2, 0, length / 2);
-            glVertex3d(-width / 2, 0, length / 2);
+            glVertex3d(-width, 0, -length);
+            glVertex3d(width, 0, -length);
+            glVertex3d(width, 0, length);
+            glVertex3d(-width, 0, length);
         glEnd();
-        glPopMatrix();
+        //glPopMatrix();
     glEndList();
 }
 

@@ -8,7 +8,7 @@ setup::~setup()= default;
 setup::setup(){}
 
 void setup::initialize(int _width, int _height){
-    terrainfile = "../../assets/terrain/1.txt";
+   // terrainfile = "../../assets/terrain/1.txt";
     width = _width;
     height = _height;
     SDL_Init(SDL_INIT_EVERYTHING);
@@ -24,10 +24,12 @@ void setup::initialize(int _width, int _height){
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
     context = SDL_GL_CreateContext(win);
 
+    glEnable(GL_DEPTH_TEST);
+   // glEnable(GL_TEXTURE_2D);
 //    SDL_GL_SetSwapInterval(10);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity( );
-    gluOrtho2D(0,800,0,600);
+    gluPerspective(90, (double) 800.0 / 600.0, 1, 1000);
 
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
