@@ -6,6 +6,7 @@
 #define BATTLEARENA_GAMEFLOW_H
 
 #include "../utils/includes.h"
+#include "../managers/terrainManager.h"
 
 class gameflow {
 private:
@@ -13,6 +14,8 @@ private:
     SDL_Event event;
     const Uint8 *state;
     setup* settings;
+    terrainManager* terrain;
+
 public:
     gameflow();
     ~gameflow();

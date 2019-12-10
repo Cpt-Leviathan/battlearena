@@ -10,4 +10,9 @@
 #include <SDL2/SDL.h>
 #include <GL/gl.h>
 #include <GL/glu.h>
+#include <string>
+#include <fstream>
+#include <iostream>
+#include <vector>
+#include "opengl_util.h"
 #include "../gameflow/setup.h"

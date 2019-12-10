@@ -8,6 +8,7 @@ setup::~setup()= default;
 setup::setup(){}
 
 void setup::initialize(int _width, int _height){
+    terrainfile = "../../assets/terrain/1.txt";
     width = _width;
     height = _height;
     SDL_Init(SDL_INIT_EVERYTHING);
@@ -40,4 +41,12 @@ void setup::clear(){
 
 SDL_Window* setup::getWin(){
     return win;
+}
+
+const std::string &setup::getTerrainfile() const {
+    return terrainfile;
+}
+
+void setup::setTerrainfile(const std::string &terrainfile) {
+    setup::terrainfile = terrainfile;
 }

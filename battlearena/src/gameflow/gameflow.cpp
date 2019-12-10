@@ -15,6 +15,8 @@ gameflow::~gameflow(){
 void gameflow::initialize(setup* _settings){
     isRunning = true;
     settings = _settings;
+    gluLookAt(100,50,100, 0, 0, 0, 0, 1, 0);
+    terrain = new terrainManager();
 }
 
 void gameflow::updateFlow(){
@@ -30,7 +32,9 @@ void gameflow::updateFlow(){
         isRunning = false;
     }
     //dessin des differents objet dans la fenetre
-
+    drawAxis(2);
+    terrain->updateManager();
+    drawAxis(2);
     //pause dans l image
     SDL_Delay(1);
     //mise a jour de l ecran

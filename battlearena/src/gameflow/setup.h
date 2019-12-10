@@ -12,12 +12,16 @@ private:
     SDL_Window *win;
     SDL_GLContext  context;
     int width, height;
+    std::string terrainfile;
 public:
     setup();
     ~setup();
     void initialize(int width, int height);
     void clear();
+    const std::string &getTerrainfile() const;
+    void setTerrainfile(const std::string &terrainfile);
     SDL_Window* getWin();
+
 };
 
 
