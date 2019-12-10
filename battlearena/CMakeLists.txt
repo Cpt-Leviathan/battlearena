@@ -26,7 +26,7 @@ set(CMAKE_CXX_STANDARD 14)
 add_executable(
         ${PROJECT_NAME_VALUE}
         ${source_files}
-)
+        src/gameflow/gameflow.cpp src/gameflow/gameflow.h src/managers/tankManager.cpp src/managers/tankManager.h src/managers/bulletManager.cpp src/managers/bulletManager.h src/entities/tank.cpp src/entities/tank.h src/entities/bullet.cpp src/entities/bullet.h src/utils/includes.h src/gameflow/setup.cpp src/gameflow/setup.h)
 
 #target_link_libraries(${PROJECT_NAME_VALUE} , reactphysics3d)
 
