@@ -21,6 +21,12 @@ void gameflow::initialize(setup* _settings){
 void gameflow::updateFlow(){
 //Nettoyer la fenetre
     glClearColor(1.f, 1.f, 1.f, 1.f);
+
+    /**************************/
+    /***** ton erreur etait ici *****/
+    //tu as mis GL_DEPTH_BIT a la place de GL_DEPTH_BUFFER_BIT
+    //y a pas bcp de difference, mais je me doutais que c etait une betise d initialisation
+    /**************************/
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
     gluLookAt(5,5,5, 0, 0, 0, 0, 1, 0);
