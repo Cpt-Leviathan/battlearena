@@ -36,10 +36,10 @@ void gameflow::updateFlow(){
     //dessin des differents objet dans la fenetre
     drawAxis(2);
 
-    //terrain->updateManager();
+    terrain->updateManager();
     //pause dans l image
     //SDL_Delay(1);
-
+    tank->update();
     //mise a jour de l ecran
     glFlush();
     SDL_GL_SwapWindow(settings->getWin());
