@@ -6,8 +6,15 @@
 #define BATTLEARENA_TANKMANAGER_H
 
 
+#include "../utils/includes.h"
+#include "../entities/Tank.h"
 class tankManager {
-
+private:
+    Tank *tank;
+public:
+    tankManager();
+    ~tankManager();
+    void update();
 };
 
 

@@ -3,3 +3,15 @@
 //
 
 #include "tankManager.h"
+
+tankManager::tankManager() {
+    tank=new Tank();
+}
+
+tankManager::~tankManager() {
+    delete tank;
+}
+
+void tankManager::update() {
+    tank->drawTank();
+}

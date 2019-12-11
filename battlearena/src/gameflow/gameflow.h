@@ -7,6 +7,7 @@
 
 #include "../utils/includes.h"
 #include "../managers/terrainManager.h"
+#include "../managers/tankManager.h"
 
 class gameflow {
 private:
@@ -15,6 +16,7 @@ private:
     const Uint8 *state;
     setup* settings;
     terrainManager* terrain;
+    tankManager* tank;
 
 public:
     gameflow();
