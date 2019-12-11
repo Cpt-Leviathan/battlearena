@@ -10,7 +10,8 @@
 #include <GL/glu.h>
 
 class Tank {
-
+private:
+    GLUquadric* params;
 public:
     void drawCube(float x, float y, float z,int type);
     void drawTank();

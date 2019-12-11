@@ -38,7 +38,7 @@ void gameflow::updateFlow(){
 
     terrain->updateManager();
     //pause dans l image
-    //SDL_Delay(1);
+    SDL_Delay(1);
     tank->update();
     //mise a jour de l ecran
     glFlush();
