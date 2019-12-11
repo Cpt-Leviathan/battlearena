@@ -14,7 +14,7 @@ void setup::initialize(int _width, int _height){
     SDL_Init(SDL_INIT_EVERYTHING);
 
     //init fenetre en opengl
-    win = SDL_CreateWindow("OpenGl Test",
+    win = SDL_CreateWindow("Battle Arena",
                            SDL_WINDOWPOS_CENTERED,
                            SDL_WINDOWPOS_CENTERED,
                            width, height,
@@ -25,11 +25,11 @@ void setup::initialize(int _width, int _height){
     context = SDL_GL_CreateContext(win);
 
     glEnable(GL_DEPTH_TEST);
-   // glEnable(GL_TEXTURE_2D);
+    glEnable(GL_TEXTURE_2D);
 //    SDL_GL_SetSwapInterval(10);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity( );
-    gluPerspective(90, (double) 800.0 / 600.0, 1, 1000);
+    gluPerspective(70, (double) 800.0 / 600.0, 1, 1000);
 
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();

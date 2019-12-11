@@ -6,19 +6,35 @@
 
 terrain::terrain(){
     tileWidth = tileLength = 50;
-    idGroundTex = loadTexture("../assets/terrain/sand.jpg");
-    idWallTex = loadTexture("../assets/terrain/rock.jpg");
+    walls = new std::vector<wall*>();
+    idGroundTex = loadTexture("../assets/sand.jpg");
+
+    idWallTex = loadTexture("../assets/rock.jpg");
     readFile("../assets/terrain/1.txt");
     createTerrain();
 }
 
 terrain::~terrain(){
+    for(wall* w: *walls){
+        delete(w);
+    }
     glDeleteTextures(1,&idGroundTex);
-    glDeleteTextures(1,&idWallTex);
-    glDeleteLists(idListe, 1);
+    glDeleteLists(idList, 1);
 }
-void terrain::readFile(std::string path){
+void terrain::readFile(const std::string path) {
     std::ifstream infile;
+
+    infile.open(path);
+    if (infile) {
+        std::string line;
+        int nbLine = 0;
+        while (std::getline(infile, line)) {
+            nbLine++;
+        }
+        length = nbLine * tileLength;
+        infile.close();
+    }
+
     infile.open(path);
     if (!infile) {
         std::cout << "Unable to open file datafile.txt";
@@ -26,33 +42,69 @@ void terrain::readFile(std::string path){
     else {
         std::string line;
         int nbLine = 0;
-        //std::getline(infile, line);
-        while (std::getline(infile, line)) {
+            while (std::getline(infile, line)) {
             width = tileWidth * line.size();
+            for(int i = 0; i < line.size(); i++){
+                if(i == 0){
+                    if(nbLine > 0){
+                        glTranslatef(-2 * tileWidth, 0, 0);
+                    }
+                }
+                else{
+                    glTranslatef(0, 0, 2 * tileLength);
+                }
+                if(line[i] == '1'){
+                    walls->push_back(new wall(-width + tileWidth * nbLine, -length + tileLength * i, tileWidth, tileLength, idWallTex));
+                }
+            }
             nbLine++;
         }
-        width = line.size() * tileWidth;
-        length = nbLine * tileLength;
-
         infile.close();
     }
 }
 
 void terrain::createTerrain(){
-    idListe = glGenLists(1);
-    glNewList(idListe, GL_COMPILE);
-        //glPushMatrix();
+    idList = glGenLists(1);
+    glNewList(idList, GL_COMPILE);
+        glPushMatrix();
+        glColor3f(1, 1, 1);
         glBindTexture(GL_TEXTURE_2D, idGroundTex);
         glBegin(GL_QUADS);
-            glVertex3d(-width, 0, -length);
-            glVertex3d(width, 0, -length);
-            glVertex3d(width, 0, length);
-            glVertex3d(-width, 0, length);
+            glTexCoord2f(0, 0);glVertex3d(-width, 0, -length);
+            glTexCoord2f(0, 50);glVertex3d(width, 0, -length);
+            glTexCoord2f(50, 50);glVertex3d(width, 0, length);
+            glTexCoord2f(50, 0);glVertex3d(-width, 0, length);
         glEnd();
-        //glPopMatrix();
+        glPopMatrix();
     glEndList();
+
+    //glTranslatef(width - tileWidth/2, 0, -length + tileLength / 2);
+    for(wall* w : *walls){
+        w->createWall();
+    }
+
 }
 
-GLuint terrain::getIdListe() const {
-    return idListe;
+GLuint terrain::getIdList() const {
+    return idList;
+}
+
+std::vector<wall *> *terrain::getWalls() const {
+    return walls;
+}
+
+int terrain::getWidth() const {
+    return width;
+}
+
+int terrain::getLength() const {
+    return length;
+}
+
+int terrain::getTileWidth() const {
+    return tileWidth;
+}
+
+int terrain::getTileLength() const {
+    return tileLength;
 }
