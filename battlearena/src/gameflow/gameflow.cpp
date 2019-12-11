@@ -23,7 +23,7 @@ void gameflow::updateFlow(){
     glClearColor(.0f, .0f, .0f, .0f);
     glClear(GL_COLOR_BUFFER_BIT |  GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
-    gluLookAt(0,300, 0.001f, 0, 0, 0, 0, 1, 0);
+    gluLookAt(0,700, 0.001f, 0, 0, 0, 0, 1, 0);
     //gestion evenement
     SDL_PollEvent(&event);
     state = SDL_GetKeyboardState(NULL);

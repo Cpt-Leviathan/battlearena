@@ -14,6 +14,8 @@ wall::~wall(){
 
 void wall::createWall(){
     idList = glGenLists(1);
+    width *= 2;
+    length *= 2;
     glNewList(idList, GL_COMPILE);
         glPushMatrix();
         glBindTexture(GL_TEXTURE_2D, idTexture);

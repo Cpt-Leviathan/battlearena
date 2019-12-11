@@ -45,16 +45,8 @@ void terrain::readFile(const std::string path) {
             while (std::getline(infile, line)) {
             width = tileWidth * line.size();
             for(int i = 0; i < line.size(); i++){
-                if(i == 0){
-                    if(nbLine > 0){
-                        glTranslatef(-2 * tileWidth, 0, 0);
-                    }
-                }
-                else{
-                    glTranslatef(0, 0, 2 * tileLength);
-                }
                 if(line[i] == '1'){
-                    walls->push_back(new wall(-width + tileWidth * nbLine, -length + tileLength * i, tileWidth, tileLength, idWallTex));
+                    walls->push_back(new wall(tileWidth * 2 * i, tileLength * 2 * nbLine, tileWidth, tileLength, idWallTex));
                 }
             }
             nbLine++;
