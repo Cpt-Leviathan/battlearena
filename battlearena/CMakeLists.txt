@@ -26,7 +26,7 @@ set(CMAKE_CXX_STANDARD 14)
 add_executable(
         ${PROJECT_NAME_VALUE}
         ${source_files}
-        src/gameflow/gameflow.cpp src/gameflow/gameflow.h src/managers/tankManager.cpp src/managers/tankManager.h src/managers/bulletManager.cpp src/managers/bulletManager.h src/entities/Tank.cpp src/entities/Tank.h src/entities/bullet.cpp src/entities/bullet.h src/utils/includes.h src/gameflow/setup.cpp src/gameflow/setup.h src/entities/terrain.cpp src/entities/terrain.h src/entities/wall.cpp src/entities/wall.h src/managers/terrainManager.cpp src/managers/terrainManager.h src/managers/manager.cpp src/managers/manager.h)
+        src/gameflow/gameflow.cpp src/gameflow/gameflow.h src/managers/tankManager.cpp src/managers/tankManager.h src/managers/bulletManager.cpp src/managers/bulletManager.h src/entities/Tank.cpp src/entities/Tank.h src/entities/bullet.cpp src/entities/bullet.h src/utils/includes.h src/gameflow/setup.cpp src/gameflow/setup.h src/entities/terrain.cpp src/entities/terrain.h src/entities/wall.cpp src/entities/wall.h src/managers/terrainManager.cpp src/managers/terrainManager.h src/managers/manager.cpp src/managers/manager.h src/entities/Direction.h src/entities/Camera.cpp src/entities/Camera.h src/managers/CameraManager.cpp src/managers/CameraManager.h)
 
 #target_link_libraries(${PROJECT_NAME_VALUE} , reactphysics3d)
 

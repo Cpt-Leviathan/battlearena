@@ -6,7 +6,15 @@
 #define BATTLEARENA_BULLETMANAGER_H
 
 
+#include "../utils/includes.h"
+#include "../entities/bullet.h"
+
 class bulletManager {
+public:
+    bulletManager();
+    ~bulletManager();
+    void update();
+    void initialiser();
 
 };
 
