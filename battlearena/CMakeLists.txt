@@ -26,7 +26,7 @@ set(CMAKE_CXX_STANDARD 14)
 add_executable(
         ${PROJECT_NAME_VALUE}
         ${source_files}
-)
+        )
 
 
 #target_link_libraries(${PROJECT_NAME_VALUE} , reactphysics3d)

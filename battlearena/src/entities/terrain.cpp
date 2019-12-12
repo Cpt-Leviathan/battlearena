@@ -25,6 +25,7 @@ void terrain::readFile(const std::string path) {
     std::ifstream infile;
 
     infile.open(path);
+    //compte le nombre de rangee se trouve dans le fichier pour pouvoir utiliser Length plus tard
     if (infile) {
         std::string line;
         int nbLine = 0;
@@ -39,6 +40,7 @@ void terrain::readFile(const std::string path) {
     if (!infile) {
         std::cout << "Unable to open file datafile.txt";
     }
+    //lire le fichier txt et creer un mur dependement de ce que contient le fichier
     else {
         std::string line;
         int nbLine = 0;
@@ -81,7 +83,7 @@ GLuint terrain::getIdList() const {
     return idList;
 }
 
-std::vector<wall *> *terrain::getWalls() const {
+std::vector<wall*> *terrain::getWalls() const {
     return walls;
 }
 

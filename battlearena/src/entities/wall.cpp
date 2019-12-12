@@ -11,7 +11,6 @@ wall::~wall(){
     glDeleteTextures(1, &idTexture);
     glDeleteLists(idList, 1);
 }
-
 void wall::createWall(){
     idList = glGenLists(1);
     width *= 2;

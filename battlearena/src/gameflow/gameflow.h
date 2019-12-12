@@ -8,24 +8,21 @@
 #include "../utils/includes.h"
 #include "../managers/terrainManager.h"
 #include "../managers/tankManager.h"
-
-class gameflow {
+#include "flow.h"
+class gameflow : flow {
 private:
-    bool isRunning;
-    SDL_Event event;
-    const Uint8 *state;
-    setup* settings;
+
     terrainManager* terrain;
     tankManager* tank;
 
 public:
     gameflow();
     ~gameflow();
-    void initialize(setup* _settings);
-    void updateFlow();
-    void cleanFlow();
-
-    bool getIsRunning();
+    void initialize(setup* _settings) override;
+    void updateFlow() override;
+    void draw() override;
+    void cleanFlow() override;
+    bool getIsRunning() const override;
 };
 
 

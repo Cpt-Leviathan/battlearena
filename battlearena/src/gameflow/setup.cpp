@@ -3,12 +3,12 @@
 //
 
 #include "setup.h"
-
 setup::~setup()= default;
 setup::setup(){}
 
 void setup::initialize(int _width, int _height){
    // terrainfile = "../../assets/terrain/1.txt";
+
     width = _width;
     height = _height;
     SDL_Init(SDL_INIT_EVERYTHING);

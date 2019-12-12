@@ -19,33 +19,22 @@ void gameflow::initialize(setup* _settings){
 }
 
 void gameflow::updateFlow(){
-//Nettoyer la fenetre
+    clearWindow();
 
-    glClearColor(.0f, .0f, .0f, .0f);
-    glClear(GL_COLOR_BUFFER_BIT |  GL_DEPTH_BUFFER_BIT);
-
-    glClearColor(1.f, 1.f, 1.f, 1.f);
-
-    //pb est ici
-
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-    glLoadIdentity();
     gluLookAt(0,700, 0.001f, 0, 0, 0, 0, 1, 0);
-    //gestion evenement
-    SDL_PollEvent(&event);
-    state = SDL_GetKeyboardState(NULL);
-    if (event.type == SDL_QUIT || state[SDL_SCANCODE_ESCAPE]) {
-        isRunning = false;
-    }
-    //dessin des differents objet dans la fenetre
+
+    manageEvents();
+
+    draw();
+
+    pauseFrame();
+
+    updateWindow();
+}
+
+void gameflow::draw(){
     terrain->updateManager();
-    //pause dans l image
-    //SDL_Delay(1);
-    tank->update();
-    //mise a jour de l ecran
-    glFlush();
-    SDL_GL_SwapWindow(settings->getWin());
+    //tank->update();
 }
 
 void gameflow::cleanFlow(){
@@ -53,6 +42,6 @@ void gameflow::cleanFlow(){
     delete(state);
 }
 
-bool gameflow::getIsRunning(){
+bool gameflow::getIsRunning() const{
     return isRunning;
 }
