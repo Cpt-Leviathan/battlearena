@@ -97,7 +97,7 @@ void Tank::drawTank(){
     glTranslatef(0,0,-4);
     gluSphere(params, 1,20,20);
     glScalef(0.5f,2.5f,2);
-    //#endroues
+    //#endRoues
 
     glTranslatef(0,0,1);
     glRotatef(-rotation,0,1,0);
@@ -118,6 +118,8 @@ void Tank::drawTank(){
     glTranslatef(0,-0.75f,1);
     glRotatef(-rotationCanon,0,1,0);
 
+    glPopMatrix();
+    glPushMatrix();
     //roue1
     //glScalef(2,0.4f,0.5f);
     //gluSphere(params, 1,20,20);
@@ -131,11 +133,11 @@ void Tank::deplacer(Direction direction) {
     switch (direction){
         case Direction::AVANCE:
             position.x+=velociteX*cos((rotation*M_PI)/180.0);
-            position.y+=velociteZ*sin((rotation*M_PI)/180.0);
+            position.y-=velociteZ*sin((rotation*M_PI)/180.0);
             break;
         case Direction::RECULE:
             position.x-=velociteX*cos((rotation*M_PI)/180.0);
-            position.y-=velociteZ*sin((rotation*M_PI)/180.0);
+            position.y+=velociteZ*sin((rotation*M_PI)/180.0);
             break;
         case Direction::TOURNER_GAUCHE:
             rotation+=vitesseRotation;
@@ -157,14 +159,14 @@ void Tank::deplacer(Direction direction) {
             if(rotationCanon>360.0)
                 rotationCanon-=360.0;
             //camera.update(rotationCanon);
-            camera.update(rotation);
+            //camera.update(rotation);
             break;
         case Direction::TOURNER_CANON_DROITE:
             rotationCanon-=vitesseRotationCanon;
             if(rotationCanon<-360.0)
                 rotationCanon+=360.0;
             //camera.update(rotationCanon);
-            camera.update(rotation);
+            //camera.update(rotation);
             break;
     }
 
@@ -172,18 +174,28 @@ void Tank::deplacer(Direction direction) {
 }
 
 void Tank::initiliser() {
+    position={25,30};
     params = gluNewQuadric();
-    position={25,10};
     velociteX=3;
     velociteZ=3;
     vitesseRotation=4;
     vitesseRotationCanon=4;
     camera.initialiser();
     direction=Direction ::AVANCE;
-    rotation=0;
-    rotationCanon=0;
+    rotation=180;
+    rotationCanon=180;
     pointDeVie=0;
 
+
+}
+
+void Tank::tirer() {
+    Bullet b;
+    b.position.x=position.x+3*cos((rotationCanon*M_PI)/180.0);;
+    b.position.y=position.y-3*sin((rotationCanon*M_PI)/180.0);
+    b.initialiser(rotationCanon);
+    std::cout<<"rotationCanon "<<rotationCanon<<std::endl;
+    bullet.bullets.push_back(b);
 
 }
 
@@ -191,3 +203,8 @@ const SDL_Point &Tank::getPosition() const {
     return position;
 }
 
+void Tank::recevoirDommage(int bulletDommage){
+    pointDeVie-=bulletDommage;
+    if (pointDeVie <= 0);
+        //Die();
+}

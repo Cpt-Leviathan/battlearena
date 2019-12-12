@@ -59,6 +59,9 @@ void gameflow::updateFlow(){
     if (state[SDL_SCANCODE_UP]) {
         tank->update(Direction::AVANCE);
     }
+    if (state[SDL_SCANCODE_SPACE]) {
+        tank->update();
+    }
     gluLookAt(tank->getTank()->camera.getCamera()->eyeX+tank->getTank()->getPosition().x,
             tank->getTank()->camera.getCamera()->eyeY,
             tank->getTank()->camera.getCamera()->eyeZ+tank->getTank()->getPosition().y,
@@ -71,10 +74,22 @@ void gameflow::updateFlow(){
     //dessin des differents objet dans la fenetre
     drawAxis(2);
     terrain->updateManager();
-    //pause dans l image
+
     tank->getTank()->drawTank();
+    tank->getTank()->bullet.update();
+    for (int i = 0; i < tank->getTank()->bullet.bullets.size(); i++) {
+
+        tank->getTank()->bullet.bullets[i].drawBullet();
+        /*if(tank->getTank()->bullet.bullets[i].estExpire()){
+
+        }
+        else{
+
+        }*/
+    }
     glPopMatrix();
 
+    //pause dans l image
     SDL_Delay(100);
 
     //mise a jour de l ecran
@@ -84,7 +99,7 @@ void gameflow::updateFlow(){
 
 void gameflow::cleanFlow(){
     delete(settings);
-    delete(state);
+    //delete(state);
 }
 
 bool gameflow::getIsRunning(){

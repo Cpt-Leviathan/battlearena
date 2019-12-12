@@ -16,6 +16,10 @@ void tankManager::update(Direction direction) {
     tank->deplacer(direction);
 }
 
+void tankManager::update() {
+    tank->tirer();
+}
+
 void tankManager::initialiser() {
     tank->initiliser();
 }

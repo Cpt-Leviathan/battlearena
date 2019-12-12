@@ -15,6 +15,7 @@ public:
     tankManager();
     ~tankManager();
     void update(Direction direction);
+    void update();
     void initialiser();
 
     Tank *getTank() const;

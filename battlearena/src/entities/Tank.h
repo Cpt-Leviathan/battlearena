@@ -11,10 +11,11 @@
 #include "Direction.h"
 #include "../managers/bulletManager.h"
 #include "../managers/CameraManager.h"
+#include "IDestructive.h"
 #include <vector>
 #include <math.h>
 
-class Tank {
+class Tank:IDestructive {
 private:
     GLUquadric* params;
     Direction direction;
@@ -25,12 +26,14 @@ private:
     float vitesseRotationCanon;
     float vitesseRotation;
     SDL_Point position;
+    //SDL_Point possitionTir;
     int pointDeVie;
 
 
 
 public:
     CameraManager camera;
+    bulletManager bullet;
 
     const SDL_Point &getPosition() const;
 
@@ -39,6 +42,8 @@ public:
     ~Tank();
     void deplacer(Direction direction);
     void initiliser();
+    void tirer();
+    void recevoirDommage(int bulletDommage) override;
 };
 
 

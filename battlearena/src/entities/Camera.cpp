@@ -5,12 +5,12 @@
 #include "Camera.h"
 
 void Camera::changerPosition(float angle) {
-    eyeX=cos((angle*M_PI)/180.0)*25;
+    eyeX=-cos((angle*M_PI)/180.0)*25;
     eyeZ=sin((angle*M_PI)/180.0)*25;
 }
 
 void Camera::initialiser() {
-    eyeX=-25;
+    eyeX=25;
     eyeY=25;
     eyeZ=0;
     cibleX=0;
