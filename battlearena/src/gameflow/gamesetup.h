@@ -12,14 +12,12 @@ namespace gs{
 
 class gamesetup {
 public:
-
     static int nbPlayers;
     static int gameTimer;
     static std::string mapFile;
+
     gamesetup();
     ~gamesetup();
-    static void createViewports();
-
     static void setNbPlayers(int nbPlayers);
     static void setGameTimer(int gameTimer);
     static void setMapFile(const std::string &mapFile);

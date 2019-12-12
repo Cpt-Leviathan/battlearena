@@ -11,6 +11,7 @@ void setup::initialize(int _width, int _height){
 
     width = _width;
     height = _height;
+
     SDL_Init(SDL_INIT_EVERYTHING);
 
     //init fenetre en opengl

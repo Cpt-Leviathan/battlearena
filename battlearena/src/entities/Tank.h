@@ -10,11 +10,10 @@
 #include <GL/glu.h>
 
 class Tank {
-
+private:
 public:
     void drawCube(float x, float y, float z,int type);
     void drawTank();
 };
-
 
 #endif //BATTLEARENA_TANK_H

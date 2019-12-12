@@ -3,6 +3,7 @@
 //
 
 #include "terrain.h"
+#include "../gameflow/gamesetup.h"
 
 terrain::terrain(){
     tileWidth = tileLength = 50;
@@ -10,7 +11,7 @@ terrain::terrain(){
     idGroundTex = loadTexture("../assets/sand.jpg");
 
     idWallTex = loadTexture("../assets/rock.jpg");
-    readFile("../assets/terrain/1.txt");
+    readFile(gamesetup::mapFile);
     createTerrain();
 }
 

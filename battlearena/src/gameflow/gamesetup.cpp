@@ -3,9 +3,9 @@
 //
 
 #include "gamesetup.h"
-int gamesetup::nbPlayers;
+int gamesetup::nbPlayers = 2;
 int gamesetup::gameTimer;
-std::string gamesetup::mapFile;
+std::string gamesetup::mapFile = "../assets/terrain/1.txt";
 
 gamesetup::gamesetup(){
 
@@ -13,11 +13,6 @@ gamesetup::gamesetup(){
 
 gamesetup::~gamesetup(){
 
-}
-void gamesetup::createViewports(){
-    for(int i = 0; i < nbPlayers; i++){
-
-    }
 }
 
 int gamesetup::getNbPlayers() {

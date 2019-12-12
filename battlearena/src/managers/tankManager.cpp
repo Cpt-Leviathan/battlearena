@@ -6,9 +6,15 @@
 
 tankManager::tankManager() {
     tank=new Tank();
+
 }
 
 tankManager::~tankManager() {
+    for(auto t : *tankList){
+        delete t;
+    }
+    tankList->clear();
+    delete tankList;
     delete tank;
 }
 
