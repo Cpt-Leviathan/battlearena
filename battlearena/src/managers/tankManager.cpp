@@ -18,6 +18,18 @@ tankManager::~tankManager() {
     delete tank;
 }
 
+void tankManager::update(Direction direction) {
+    tank->deplacer(direction);
+}
+
 void tankManager::update() {
-    tank->drawTank();
+    tank->tirer();
+}
+
+void tankManager::initialiser() {
+    tank->initiliser();
+}
+
+Tank *tankManager::getTank() const {
+    return tank;
 }

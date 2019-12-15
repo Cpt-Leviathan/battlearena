@@ -36,10 +36,37 @@ void gameflow::initialize(setup* _settings){
     isRunning = true;
     settings = _settings;
     terrain = new terrainManager();
+    tank=new tankManager();
+    tank->initialiser();
 }
 
 void gameflow::manageEvents() {
     flow::manageEvents();
+    if (state[SDL_SCANCODE_A]) {
+
+        tank->update(Direction::TOURNER_CANON_GAUCHE);
+    }
+    if (state[SDL_SCANCODE_D]) {
+        tank->update(Direction::TOURNER_CANON_DROITE);
+
+    }
+    if (state[SDL_SCANCODE_RIGHT]) {
+        tank->update(Direction::TOURNER_DROITE);
+
+    }
+    if (state[SDL_SCANCODE_LEFT]) {
+        tank->update(Direction::TOURNER_GAUCHE);
+    }
+    if (state[SDL_SCANCODE_DOWN]) {
+        tank->update(Direction::RECULE);
+        //angle+5;
+    }
+    if (state[SDL_SCANCODE_UP]) {
+        tank->update(Direction::AVANCE);
+    }
+    if (state[SDL_SCANCODE_SPACE]) {
+        tank->update();
+    }
     //TESTS - to remove later
 //    f++;
 //    if (f % 5 == 0) {
@@ -81,18 +108,34 @@ void gameflow::draw(){
         if (nbPlayers == 2) {
             glViewport(0, i * vpHeight, vpWidth, vpHeight);
         }
-        if (i == 0)
-            gluLookAt(x1, 10, y1, 0, 10, 0, 0, 1, 0);
+        if (i == 0){
+            //gluLookAt(x1, 10, y1, 0, 10, 0, 0, 1, 0);
+            gluLookAt(tank->getTank()->camera.getCamera()->eyeX+tank->getTank()->getPosition().x,
+                      tank->getTank()->camera.getCamera()->eyeY,
+                      tank->getTank()->camera.getCamera()->eyeZ+tank->getTank()->getPosition().y,
+                      tank->getTank()->getPosition().x, 0, tank->getTank()->getPosition().y,
+                      0, 1, 0
+            );
+            glPushMatrix();
+            terrain->updateManager();
+            tank->getTank()->drawTank();
+            tank->getTank()->bullet.update();
+            for (int j = 0; j < tank->getTank()->bullet.bullets.size(); j++) {
+
+                tank->getTank()->bullet.bullets[j].drawBullet();
+            }
+            glPopMatrix();
+        }
         else if (i == 1)
             gluLookAt(x2, 10, y2, 10, 10, 5, 0, 1, 0);
-        terrain->updateManager();
+        //terrain->updateManager();
         //tank->update();
     }
 }
 
 void gameflow::cleanFlow(){
     delete(settings);
-    delete(state);
+    //delete(state);
 }
 
 bool gameflow::getIsRunning() const{
