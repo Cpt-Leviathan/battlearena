@@ -8,24 +8,26 @@
 #include "../utils/includes.h"
 #include "../managers/terrainManager.h"
 #include "../managers/tankManager.h"
+#include "flow.h"
 
-class gameflow {
+class gameflow : public flow {
 private:
-    bool isRunning;
-    SDL_Event event;
-    const Uint8 *state;
-    setup* settings;
     terrainManager* terrain;
     tankManager* tank;
-
+    int nbPlayers, screenWidth, screenHeight;
+//    std::vector<void (*)(GLint x, GLint y, GLsizei width, GLsizei height)> setViewport; //list of viewport to be used in the loop and draw each players view
+    GLsizei vpWidth, vpHeight; // size of viewport width/height
+    int x1, x2, y1, y2; //test
+    int f = 0;
 public:
-    gameflow();
+    gameflow(int nbPlayers, int screenWidth, int screenHeight);
     ~gameflow();
-    void initialize(setup* _settings);
-    void updateFlow();
-    void cleanFlow();
-
-    bool getIsRunning();
+    void initialize(setup* _settings) override;
+    void manageEvents() override;
+    void updateFlow() override;
+    void draw() override;
+    void cleanFlow() override;
+    bool getIsRunning() const override;
 };
 
 

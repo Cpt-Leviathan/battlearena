@@ -11,7 +11,7 @@ Tank::~Tank() {
 void Tank::drawCube(float x, float y, float z,int type){
     glScalef(x,y,z);
     if(type==1){
-        glColor3f(1, 0, 0);
+    glColor3f(1, 0, 0);
     }
     else if(type==2){
         glColor3f(0.1, 0, 0.1);

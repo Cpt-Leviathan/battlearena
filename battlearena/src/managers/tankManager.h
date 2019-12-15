@@ -11,6 +11,7 @@
 class tankManager {
 private:
     Tank *tank;
+    std::vector<Tank*>* tankList;
 public:
     tankManager();
     ~tankManager();

@@ -11,9 +11,10 @@ class setup {
 private:
     SDL_Window *win = nullptr;
     SDL_GLContext  context;
-    int width = 0, height = 0;
     std::string terrainfile;
+
 public:
+    int width = 0, height = 0;
     setup();
     ~setup();
     void initialize(int width, int height);

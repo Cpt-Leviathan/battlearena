@@ -9,17 +9,26 @@
 #include "wall.h"
 class terrain {
 private:
-    double width, length, tileWidth, tileLength;
-    GLuint idListe;
+    int width, length, tileWidth, tileLength;
+    GLuint idList;
     GLuint idGroundTex, idWallTex;
     //int divisionsX, divisionsZ;  //nombre de divisions pour les murs sur les axes x et z
-    std::vector<GLuint>* walls;
+    std::vector<wall*>* walls;
 public:
     terrain();
     ~terrain();
     void readFile(std::string path);
     void createTerrain();
-    GLuint getIdListe() const;
+    GLuint getIdList() const;
+    std::vector<wall *> *getWalls() const;
+
+    int getWidth() const;
+
+    int getLength() const;
+
+    int getTileWidth() const;
+
+    int getTileLength() const;
 };
 
 

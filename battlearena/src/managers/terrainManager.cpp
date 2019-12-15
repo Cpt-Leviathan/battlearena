@@ -13,5 +13,14 @@ terrainManager::~terrainManager(){
 }
 
 void terrainManager::updateManager(){
-    glCallList(arena->getIdListe());
+
+    glCallList(arena->getIdList());
+    //drawAxis(50);
+    glPushMatrix();
+    glTranslatef(-arena->getWidth(), 0, -arena->getLength());
+    //drawAxis(50);
+    for(wall* w: *arena->getWalls()){
+        glCallList(w->getIdList());
+    }
+    glPopMatrix();
 }
