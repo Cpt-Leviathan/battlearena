@@ -108,11 +108,11 @@ void gameflow::draw(){
         if (nbPlayers == 2) {
             glViewport(0, i * vpHeight, vpWidth, vpHeight);
         }
-        if (i == 0){
+        if (i == 0) {
             //gluLookAt(x1, 10, y1, 0, 10, 0, 0, 1, 0);
-            gluLookAt(tank->getTank()->camera.getCamera()->eyeX+tank->getTank()->getPosition().x,
+            gluLookAt(tank->getTank()->camera.getCamera()->eyeX + tank->getTank()->getPosition().x,
                       tank->getTank()->camera.getCamera()->eyeY,
-                      tank->getTank()->camera.getCamera()->eyeZ+tank->getTank()->getPosition().y,
+                      tank->getTank()->camera.getCamera()->eyeZ + tank->getTank()->getPosition().y,
                       tank->getTank()->getPosition().x, 0, tank->getTank()->getPosition().y,
                       0, 1, 0
             );
@@ -125,10 +125,10 @@ void gameflow::draw(){
                 tank->getTank()->bullet.bullets[j].drawBullet();
             }
             glPopMatrix();
-        }
-        else if (i == 1)
+        } else if (i == 1){
             gluLookAt(x2, 10, y2, 10, 10, 5, 0, 1, 0);
-        //terrain->updateManager();
+            terrain->updateManager();
+        }
         //tank->update();
     }
 }
