@@ -33,43 +33,41 @@ gameflow::~gameflow(){
 }
 
 void gameflow::initialize(setup* _settings){
-    isRunning = true;
-    settings = _settings;
+    flow::initialize(_settings);
     terrain = new terrainManager();
 }
 
 void gameflow::manageEvents() {
     flow::manageEvents();
     //TESTS - to remove later
-//    f++;
-//    if (f % 5 == 0) {
-//        if (state[SDL_SCANCODE_W]) {
-//            x1++;
-//        }
-//        if (state[SDL_SCANCODE_S])
-//            x1--;
-//
-//        if (state[SDL_SCANCODE_UP])
-//            x2++;
-//
-//        if (state[SDL_SCANCODE_DOWN])
-//            x2--;
-//
-//        if (state[SDL_SCANCODE_A])
-//            y1++;
-//        if (state[SDL_SCANCODE_D])
-//            y1--;
-//        if (state[SDL_SCANCODE_LEFT])
-//            y2++;
-//        if (state[SDL_SCANCODE_RIGHT])
-//            y2--;
-//    }
-//    f %= 5;
+    f++;
+    if (f % 5 == 0) {
+        if (state[SDL_SCANCODE_W]) {
+            x1++;
+        }
+        if (state[SDL_SCANCODE_S])
+            x1--;
+
+        if (state[SDL_SCANCODE_UP])
+            x2++;
+
+        if (state[SDL_SCANCODE_DOWN])
+            x2--;
+
+        if (state[SDL_SCANCODE_A])
+            y1++;
+        if (state[SDL_SCANCODE_D])
+            y1--;
+        if (state[SDL_SCANCODE_LEFT])
+            y2++;
+        if (state[SDL_SCANCODE_RIGHT])
+            y2--;
+    }
+    f %= 5;
 }
 
 void gameflow::updateFlow(){
     clearWindow();
-
     manageEvents();
     draw();
     pauseFrame();
@@ -90,9 +88,10 @@ void gameflow::draw(){
     }
 }
 
-void gameflow::cleanFlow(){
-    delete(settings);
-    delete(state);
+void gameflow::clearFlow(){
+    flow::clearFlow();
+    delete settings;
+    ///delete state;
 }
 
 bool gameflow::getIsRunning() const{

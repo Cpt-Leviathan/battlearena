@@ -23,4 +23,6 @@ void terrainManager::updateManager(){
         glCallList(w->getIdList());
     }
     glPopMatrix();
+
+    arena->h->draw();
 }

@@ -26,7 +26,7 @@ public:
     void manageEvents() override;
     void updateFlow() override;
     void draw() override;
-    void cleanFlow() override;
+    void clearFlow() override;
     bool getIsRunning() const override;
 };
 

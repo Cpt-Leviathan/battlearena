@@ -26,7 +26,7 @@ set(CMAKE_CXX_STANDARD 14)
 add_executable(
         ${PROJECT_NAME_VALUE}
         ${source_files}
-        )
+        src/gameflow/menuflow.cpp src/gameflow/menuflow.h src/entities/ui/hud.cpp src/entities/ui/hud.h)
 
 
 #target_link_libraries(${PROJECT_NAME_VALUE} , reactphysics3d)

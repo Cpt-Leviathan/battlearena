@@ -23,7 +23,7 @@ public:
     virtual void draw();
     virtual void pauseFrame();
     virtual void updateWindow();
-    virtual void cleanFlow();
+    virtual void clearFlow();
 
     virtual bool getIsRunning() const;
 };
