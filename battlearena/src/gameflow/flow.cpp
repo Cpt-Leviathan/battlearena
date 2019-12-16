@@ -37,6 +37,7 @@ void flow::manageEvents(){
     if (event.type == SDL_QUIT || state[SDL_SCANCODE_ESCAPE]) {
         isRunning = false;
     }
+
 }
 
 void flow::draw(){
@@ -44,7 +45,7 @@ void flow::draw(){
 }
 
 void flow::pauseFrame() {
-    //SDL_Delay(1);
+    SDL_Delay(100);
 }
 
 void flow::updateWindow(){

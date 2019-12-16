@@ -6,7 +6,19 @@
 #define BATTLEARENA_BULLETMANAGER_H
 
 
+#include "../utils/includes.h"
+#include "../entities/Bullet.h"
+#include <vector>
+
 class bulletManager {
+private:
+
+public:
+    std::vector<Bullet> bullets;
+    bulletManager();
+    ~bulletManager();
+    void update();
+    void initialiser();
 
 };
 
