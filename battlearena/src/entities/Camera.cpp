@@ -11,7 +11,7 @@ void Camera::changerPosition(float angle) {
 
 void Camera::initialiser() {
     eyeX=300;
-    eyeY=500;
+    eyeY=700;
     eyeZ=0;
     cibleX=0;
     cibleY=0;

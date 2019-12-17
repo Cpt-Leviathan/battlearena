@@ -9,6 +9,7 @@
 #include "../utils/includes.h"
 #include "../entities/Bullet.h"
 #include <vector>
+#include "../managers/terrainManager.h"
 
 class bulletManager {
 private:
@@ -17,7 +18,7 @@ public:
     std::vector<Bullet> bullets;
     bulletManager();
     ~bulletManager();
-    void update();
+    void update(terrainManager *terrain);
     void initialiser();
 
 };

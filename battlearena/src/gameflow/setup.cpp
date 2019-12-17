@@ -13,6 +13,8 @@ void setup::initialize(int _width, int _height){
     height = _height;
 
     SDL_Init(SDL_INIT_EVERYTHING);
+    Mix_Init(MIX_INIT_MP3);
+    Mix_OpenAudio(22050, AUDIO_S16SYS, 2, 640);
 
     //init fenetre en opengl
     win = SDL_CreateWindow("Battle Arena",

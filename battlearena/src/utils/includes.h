@@ -16,3 +16,4 @@
 #include <vector>
 #include "opengl_util.h"
 #include "../gameflow/setup.h"
+#include <SDL2/SDL_mixer.h>

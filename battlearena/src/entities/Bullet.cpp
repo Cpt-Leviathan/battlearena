@@ -10,6 +10,7 @@ Bullet::~Bullet() {
 
 void Bullet::update() {
     if(tempsExpiration>0) {
+
         if(!((position.x+2>=5/*positiosMurs[l].x+4)||(xValue+9<=positiosMurs[l].x)||zValue-2>=positiosMurs[l].y+4||zValue+2<=positiosMurs[l].y*/))){
 
             isAlive= false;
@@ -36,12 +37,6 @@ void Bullet::drawBullet() {
     glPopMatrix();
     glPushMatrix();
     tempsExpiration--;
-    /*if(time - lastTime > tempsExpiration ) {
-        lastTime = time;
-    }
-    else{
-        isAlive= false;
-    }*/
 
 }
 
@@ -52,7 +47,7 @@ void Bullet::initialiser(float angle){
     tempsExpiration=10;
     isAlive=true;
     angleTir=angle;
-    lastTime=0;
+    //lastTime=0;
 
 
 }
@@ -67,4 +62,8 @@ bool Bullet::estExpire() {
         return true;
     else
         return false;
+}
+
+bool Bullet::isAlive1() const {
+    return isAlive;
 }

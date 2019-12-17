@@ -6,6 +6,7 @@
 
 Tank::~Tank() {
     gluDeleteQuadric(params);
+    Mix_FreeMusic(music);
 }
 
 void Tank::drawCube(float x, float y, float z,int type){
@@ -186,7 +187,8 @@ void Tank::initiliser() {
     direction=Direction ::NONE;
     rotation=180;
     rotationCanon=180;
-    pointDeVie=0;
+    pointDeVie=20;
+    music = Mix_LoadMUS("assets/fire.mp3");
 
 
 }
@@ -198,6 +200,7 @@ void Tank::tirer() {
     b.initialiser(rotationCanon);
     std::cout<<"rotationCanon "<<rotationCanon<<std::endl;
     bullet.bullets.push_back(b);
+    Mix_PlayMusic(music, 0);
 
 }
 

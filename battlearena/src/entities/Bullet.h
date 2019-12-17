@@ -18,7 +18,7 @@ private:
     float velociteZ;
     float tempsExpiration;
     bool isAlive;
-    Uint32 lastTime;
+    //Uint32 lastTime;
 
 public:
     GLUquadric* params;
@@ -30,6 +30,8 @@ public:
     void initialiser(float angle);
     void atteindreCible(IDestructive destructive, int degat);
     bool estExpire();
+
+    bool isAlive1() const;
 
 
 };

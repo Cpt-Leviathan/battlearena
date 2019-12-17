@@ -14,6 +14,7 @@
 #include "IDestructive.h"
 #include <vector>
 #include <math.h>
+#include <SDL2/SDL_mixer.h>
 
 class Tank:IDestructive {
 private:
@@ -28,6 +29,7 @@ private:
     SDL_Point dernierePosition;
     //SDL_Point possitionTir;
     int pointDeVie;
+    Mix_Music *music = nullptr;
 
 
 

@@ -118,11 +118,9 @@ void gameflow::draw(){
             );
             glPushMatrix();
             terrain->updateManager();
-            //verifier collision
-
+            //verifier collision tank avec murs
             int nbCollision= 0;
-
-            std::cout<<"tank.x "<<tank->getTank()->getPosition().x<<" tank.y"<<tank->getTank()->getPosition().y<<std::endl;
+            //std::cout<<"tank.x "<<tank->getTank()->getPosition().x<<" tank.y"<<tank->getTank()->getPosition().y<<std::endl;
             for(wall* w : *terrain->walls) {
                 if(!((tank->getTank()->getPosition().x-15>=w->x-550)||
                 (tank->getTank()->getPosition().x+20<=w->x-650)||
@@ -132,20 +130,16 @@ void gameflow::draw(){
 
                 }
             }
-
-
             if(nbCollision!=0){
-
                 tank->getTank()->setPosition(tank->getTank()->getDernierePosition());
-
             }
             tank->getTank()->drawTank();
-            tank->getTank()->bullet.update();
+            tank->getTank()->bullet.update(terrain);
             for (int j = 0; j < tank->getTank()->bullet.bullets.size(); j++) {
 
                 tank->getTank()->bullet.bullets[j].drawBullet();
             }
-            tank->getTank()->direction=Direction::NONE;
+            //tank->getTank()->direction=Direction::NONE;
             tank->getTank()->setDernierePosition(tank->getTank()->getPosition());
             glPopMatrix();
         } else if (i == 1){
