@@ -80,9 +80,9 @@ void Tank::drawCube(float x, float y, float z,int type){
 void Tank::drawTank(){
     glPopMatrix();
     glPushMatrix();
-
     glTranslatef(position.x, 0, position.y);
     glRotatef(rotation,0,1,0);
+    glScalef(10,10,10);
     glTranslatef(0,0.5f,0);
     drawCube(1.5f, 0.5f, 1, 2);
     glScalef(0.666666f,2,1);
@@ -169,19 +169,21 @@ void Tank::deplacer(Direction direction) {
             //camera.update(rotation);
             break;
     }
+    this->direction=direction;
 
     //drawTank();
 }
 
 void Tank::initiliser() {
     position={25,30};
+    dernierePosition=position;
     params = gluNewQuadric();
-    velociteX=3;
-    velociteZ=3;
+    velociteX=10;
+    velociteZ=10;
     vitesseRotation=4;
     vitesseRotationCanon=4;
     camera.initialiser();
-    direction=Direction ::AVANCE;
+    direction=Direction ::NONE;
     rotation=180;
     rotationCanon=180;
     pointDeVie=0;
@@ -191,8 +193,8 @@ void Tank::initiliser() {
 
 void Tank::tirer() {
     Bullet b;
-    b.position.x=position.x+3*cos((rotationCanon*M_PI)/180.0);;
-    b.position.y=position.y-3*sin((rotationCanon*M_PI)/180.0);
+    b.position.x=position.x+30*cos((rotationCanon*M_PI)/180.0);;
+    b.position.y=position.y-30*sin((rotationCanon*M_PI)/180.0);
     b.initialiser(rotationCanon);
     std::cout<<"rotationCanon "<<rotationCanon<<std::endl;
     bullet.bullets.push_back(b);
@@ -201,6 +203,18 @@ void Tank::tirer() {
 
 const SDL_Point &Tank::getPosition() const {
     return position;
+}
+
+const SDL_Point &Tank::getDernierePosition() const {
+    return dernierePosition;
+}
+
+void Tank::setPosition(const SDL_Point &position) {
+    Tank::position = position;
+}
+
+void Tank::setDernierePosition(const SDL_Point &dernierePosition) {
+    Tank::dernierePosition = dernierePosition;
 }
 
 void Tank::recevoirDommage(int bulletDommage){

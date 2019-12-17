@@ -18,7 +18,6 @@
 class Tank:IDestructive {
 private:
     GLUquadric* params;
-    Direction direction;
     float velociteX;
     float velociteZ;
     float rotation;
@@ -26,12 +25,14 @@ private:
     float vitesseRotationCanon;
     float vitesseRotation;
     SDL_Point position;
+    SDL_Point dernierePosition;
     //SDL_Point possitionTir;
     int pointDeVie;
 
 
 
 public:
+    Direction direction;
     CameraManager camera;
     bulletManager bullet;
 
@@ -44,6 +45,12 @@ public:
     void initiliser();
     void tirer();
     void recevoirDommage(int bulletDommage) override;
+
+    const SDL_Point &getDernierePosition() const;
+
+    void setPosition(const SDL_Point &position);
+
+    void setDernierePosition(const SDL_Point &dernierePosition);
 };
 
 

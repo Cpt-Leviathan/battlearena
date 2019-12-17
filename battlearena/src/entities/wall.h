@@ -9,10 +9,10 @@
 class wall {
 private:
     int width, length, height;
-    int x, y;
     GLuint idTexture;
     GLuint idList;
 public:
+    int x, y;
     wall(int x, int y, int width, int length, GLuint texture);
     ~wall();
     void createWall();      //Trump made that function

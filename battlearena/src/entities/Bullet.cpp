@@ -29,6 +29,7 @@ void Bullet::drawBullet() {
     glTranslatef(position.x,1,position.y);
     update();
     glRotatef(angleTir+90,0,1,0);
+    glScalef(10,10,10);
     gluCylinder(params,0.2f,0.2f,1,20,20);
     glTranslatef(0,0,1);
     gluCylinder(params,.5f,0.1f,1,20,20);
@@ -46,8 +47,8 @@ void Bullet::drawBullet() {
 
 void Bullet::initialiser(float angle){
     params = gluNewQuadric();
-    velociteX=4;
-    velociteZ=4;
+    velociteX=10;
+    velociteZ=10;
     tempsExpiration=10;
     isAlive=true;
     angleTir=angle;

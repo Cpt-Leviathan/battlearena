@@ -45,7 +45,7 @@ void terrain::readFile(const std::string path) {
     else {
         std::string line;
         int nbLine = 0;
-            while (std::getline(infile, line)) {
+        while (std::getline(infile, line)) {
             width = tileWidth * line.size();
             for(int i = 0; i < line.size(); i++){
                 if(line[i] == '1'){
