@@ -4,6 +4,10 @@
 
 #include "Tank.h"
 
+Tank::Tank(int id) {
+    this->id=id;
+}
+
 Tank::~Tank() {
     gluDeleteQuadric(params);
     Mix_FreeMusic(music);
@@ -152,27 +156,22 @@ void Tank::deplacer(Direction direction) {
             rotation-=vitesseRotation;
             if(rotation<-360.0)
                 rotation+=360.0;
-            //camera.update(rotationCanon);
             camera.update(rotation);
             break;
         case Direction::TOURNER_CANON_GAUCHE:
             rotationCanon+=vitesseRotationCanon;
             if(rotationCanon>360.0)
                 rotationCanon-=360.0;
-            //camera.update(rotationCanon);
-            //camera.update(rotation);
+
             break;
         case Direction::TOURNER_CANON_DROITE:
             rotationCanon-=vitesseRotationCanon;
             if(rotationCanon<-360.0)
                 rotationCanon+=360.0;
-            //camera.update(rotationCanon);
-            //camera.update(rotation);
             break;
     }
     this->direction=direction;
 
-    //drawTank();
 }
 
 void Tank::initiliser() {
@@ -188,6 +187,7 @@ void Tank::initiliser() {
     rotation=180;
     rotationCanon=180;
     pointDeVie=20;
+    isAlive= true;
     music = Mix_LoadMUS("assets/fire.mp3");
 
 
@@ -221,7 +221,19 @@ void Tank::setDernierePosition(const SDL_Point &dernierePosition) {
 }
 
 void Tank::recevoirDommage(int bulletDommage){
+
     pointDeVie-=bulletDommage;
-    if (pointDeVie <= 0);
-        //Die();
+    if (pointDeVie <= 0){
+        std::cout<<"player "<<id+1<<" est mort"<<std::endl;
+        isAlive= false;
+    }
+
+}
+
+int Tank::getId() const {
+    return id;
+}
+
+void Tank::setId(int id) {
+    Tank::id = id;
 }

@@ -4,32 +4,44 @@
 
 #include "tankManager.h"
 
-tankManager::tankManager() {
-    tank=new Tank();
+tankManager::tankManager(int nbPlayers) {
+    for (int i = 0; i < nbPlayers; i++) {
+        tankList.push_back(new Tank(i));
+    }
+
 
 }
 
 tankManager::~tankManager() {
-    for(auto t : *tankList){
+    for(auto t : tankList){
         delete t;
     }
-    tankList->clear();
-    delete tankList;
-    delete tank;
+    tankList.clear();
+
 }
 
-void tankManager::update(Direction direction) {
-    tank->deplacer(direction);
+void tankManager::update(Direction direction, int idTank) {
+    tankList[idTank]->deplacer(direction);
+
+}
+
+void tankManager::update(int idTank) {
+    tankList[idTank]->tirer();
 }
 
 void tankManager::update() {
-    tank->tirer();
+    for (Tank* t : tankList) {
+        if(!t->isAlive)
+            tankList.erase(tankList.begin()+t->getId());
+    }
+
 }
 
 void tankManager::initialiser() {
-    tank->initiliser();
+    for (Tank* t : tankList) {
+        t->initiliser();
+    }
+
 }
 
-Tank *tankManager::getTank() const {
-    return tank;
-}
+

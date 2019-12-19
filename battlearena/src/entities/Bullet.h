@@ -17,10 +17,9 @@ private:
     float velociteX;
     float velociteZ;
     float tempsExpiration;
-    bool isAlive;
-    //Uint32 lastTime;
 
 public:
+    bool isAlive;
     GLUquadric* params;
     SDL_Point position;
     float angleTir;
@@ -28,10 +27,9 @@ public:
     void update();
     void drawBullet();
     void initialiser(float angle);
-    void atteindreCible(IDestructive destructive, int degat);
+    void atteindreCible(IDestructive *destructive, int degat);
     bool estExpire();
 
-    bool isAlive1() const;
 
 
 };

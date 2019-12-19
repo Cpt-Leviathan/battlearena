@@ -10,16 +10,19 @@
 #include "../entities/Tank.h"
 class tankManager {
 private:
-    Tank *tank;
-    std::vector<Tank*>* tankList;
+    //Tank *tank;
+
 public:
-    tankManager();
+    std::vector<Tank*> tankList;
+
+    tankManager(int nbPlayers);
     ~tankManager();
-    void update(Direction direction);
+    void update(Direction direction,int idTank);
+    void update(int idTank);
     void update();
     void initialiser();
 
-    Tank *getTank() const;
+
 };
 
 

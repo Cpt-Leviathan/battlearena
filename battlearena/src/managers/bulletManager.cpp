@@ -25,7 +25,7 @@ void bulletManager::update(terrainManager *terrain) {
 
             }
         }
-        if (bullets[i].estExpire()||nbCollision!=0) {
+        if (bullets[i].estExpire()||nbCollision!=0|| !bullets[i].isAlive) {
             gluDeleteQuadric(bullets[i].params);
             bullets.erase(bullets.begin()+i);
         } else {
