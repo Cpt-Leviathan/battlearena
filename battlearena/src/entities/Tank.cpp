@@ -4,8 +4,13 @@
 
 #include "Tank.h"
 
+Tank::Tank(int id) {
+    this->id=id;
+}
+
 Tank::~Tank() {
     gluDeleteQuadric(params);
+    Mix_FreeMusic(music);
 }
 
 void Tank::drawCube(float x, float y, float z,int type){
@@ -80,9 +85,9 @@ void Tank::drawCube(float x, float y, float z,int type){
 void Tank::drawTank(){
     glPopMatrix();
     glPushMatrix();
-
     glTranslatef(position.x, 0, position.y);
     glRotatef(rotation,0,1,0);
+    glScalef(10,10,10);
     glTranslatef(0,0.5f,0);
     drawCube(1.5f, 0.5f, 1, 2);
     glScalef(0.666666f,2,1);
@@ -151,51 +156,51 @@ void Tank::deplacer(Direction direction) {
             rotation-=vitesseRotation;
             if(rotation<-360.0)
                 rotation+=360.0;
-            //camera.update(rotationCanon);
             camera.update(rotation);
             break;
         case Direction::TOURNER_CANON_GAUCHE:
             rotationCanon+=vitesseRotationCanon;
             if(rotationCanon>360.0)
                 rotationCanon-=360.0;
-            //camera.update(rotationCanon);
-            //camera.update(rotation);
+
             break;
         case Direction::TOURNER_CANON_DROITE:
             rotationCanon-=vitesseRotationCanon;
             if(rotationCanon<-360.0)
                 rotationCanon+=360.0;
-            //camera.update(rotationCanon);
-            //camera.update(rotation);
             break;
     }
+    this->direction=direction;
 
-    //drawTank();
 }
 
 void Tank::initiliser() {
     position={25,30};
+    dernierePosition=position;
     params = gluNewQuadric();
-    velociteX=3;
-    velociteZ=3;
+    velociteX=10;
+    velociteZ=10;
     vitesseRotation=4;
     vitesseRotationCanon=4;
     camera.initialiser();
-    direction=Direction ::AVANCE;
+    direction=Direction ::NONE;
     rotation=180;
     rotationCanon=180;
-    pointDeVie=0;
+    pointDeVie=20;
+    isAlive= true;
+    music = Mix_LoadMUS("assets/fire.mp3");
 
 
 }
 
 void Tank::tirer() {
     Bullet b;
-    b.position.x=position.x+3*cos((rotationCanon*M_PI)/180.0);;
-    b.position.y=position.y-3*sin((rotationCanon*M_PI)/180.0);
+    b.position.x=position.x+30*cos((rotationCanon*M_PI)/180.0);;
+    b.position.y=position.y-30*sin((rotationCanon*M_PI)/180.0);
     b.initialiser(rotationCanon);
     std::cout<<"rotationCanon "<<rotationCanon<<std::endl;
     bullet.bullets.push_back(b);
+    Mix_PlayMusic(music, 0);
 
 }
 
@@ -203,8 +208,32 @@ const SDL_Point &Tank::getPosition() const {
     return position;
 }
 
+const SDL_Point &Tank::getDernierePosition() const {
+    return dernierePosition;
+}
+
+void Tank::setPosition(const SDL_Point &position) {
+    Tank::position = position;
+}
+
+void Tank::setDernierePosition(const SDL_Point &dernierePosition) {
+    Tank::dernierePosition = dernierePosition;
+}
+
 void Tank::recevoirDommage(int bulletDommage){
+
     pointDeVie-=bulletDommage;
-    if (pointDeVie <= 0);
-        //Die();
+    if (pointDeVie <= 0){
+        std::cout<<"player "<<id+1<<" est mort"<<std::endl;
+        isAlive= false;
+    }
+
+}
+
+int Tank::getId() const {
+    return id;
+}
+
+void Tank::setId(int id) {
+    Tank::id = id;
 }

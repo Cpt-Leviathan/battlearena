@@ -13,7 +13,20 @@ void setup::initialize(int _width, int _height){
     height = _height;
 
     SDL_Init(SDL_INIT_EVERYTHING);
+    Mix_Init(MIX_INIT_MP3);
+    SDL_Init(SDL_INIT_VIDEO|SDL_INIT_JOYSTICK);
+    Mix_OpenAudio(22050, AUDIO_S16SYS, 2, 640);
 
+    if(SDL_NumJoysticks()>=1){
+        std::cout<<"manette connectée"<<std::endl;
+        SDL_Joystick *joystick=SDL_JoystickOpen(0);
+
+        std::cout<<"joystick name: "<<SDL_JoystickName(0)<<std::endl;
+        std::cout<<"num axe: "<<SDL_JoystickNumAxes(joystick)<<std::endl;
+        std::cout<<"num button: "<<SDL_JoystickNumButtons(joystick)<<std::endl;
+        std::cout<<"num balls: "<<SDL_JoystickNumBalls(joystick)<<std::endl;
+        std::cout<<"num hats: "<<SDL_JoystickNumHats(joystick)<<std::endl;
+    }
     //init fenetre en opengl
     win = SDL_CreateWindow("Battle Arena",
                            SDL_WINDOWPOS_CENTERED,

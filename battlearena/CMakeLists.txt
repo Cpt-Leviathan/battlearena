@@ -38,6 +38,7 @@ if (WIN32)
             -lSDL2main
             -lSDL2
             -lSDL2_image
+            -lSDL2_mixer
             -lopengl32
             -lglu32
     )
@@ -49,6 +50,7 @@ if (UNIX)
             -lSDL2main
             -lSDL2
             -lSDL2_image
+            -lSDL2_mixer
             -lGL
             -lGLU
     )

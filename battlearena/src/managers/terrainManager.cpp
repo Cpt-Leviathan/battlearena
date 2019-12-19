@@ -6,6 +6,7 @@
 
 terrainManager::terrainManager(){
     arena = new terrain();
+    walls=arena->getWalls();
 }
 
 terrainManager::~terrainManager(){

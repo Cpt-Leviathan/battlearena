@@ -11,6 +11,7 @@ class terrainManager {
 private:
     terrain *arena;
 public:
+    std::vector<wall*>* walls;
     terrainManager();
     ~terrainManager();
     void updateManager();

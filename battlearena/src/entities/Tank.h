@@ -14,11 +14,11 @@
 #include "IDestructive.h"
 #include <vector>
 #include <math.h>
+#include <SDL2/SDL_mixer.h>
 
-class Tank:IDestructive {
+class Tank:public IDestructive {
 private:
     GLUquadric* params;
-    Direction direction;
     float velociteX;
     float velociteZ;
     float rotation;
@@ -26,15 +26,19 @@ private:
     float vitesseRotationCanon;
     float vitesseRotation;
     SDL_Point position;
+    SDL_Point dernierePosition;
     //SDL_Point possitionTir;
     int pointDeVie;
-
+    Mix_Music *music = nullptr;
+    int id;
 
 
 public:
+    bool isAlive;
+    Direction direction;
     CameraManager camera;
     bulletManager bullet;
-
+    Tank(int id);
     const SDL_Point &getPosition() const;
 
     void drawCube(float x, float y, float z,int type);
@@ -44,6 +48,16 @@ public:
     void initiliser();
     void tirer();
     void recevoirDommage(int bulletDommage) override;
+
+    const SDL_Point &getDernierePosition() const;
+
+    void setPosition(const SDL_Point &position);
+
+    void setDernierePosition(const SDL_Point &dernierePosition);
+
+    int getId() const;
+
+    void setId(int id);
 };
 
 
