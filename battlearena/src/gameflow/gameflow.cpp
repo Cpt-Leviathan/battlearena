@@ -304,7 +304,7 @@ void gameflow::draw(){
     }
 }
 
-void gameflow::cleanFlow(){
+void gameflow::clearFlow(){
     delete(settings);
 }
 
