@@ -13,11 +13,13 @@ terrain::terrain(){
     idWallTex = loadTexture("../assets/rock.jpg");
     readFile(gamesetup::mapFile);
     createTerrain();
+    h = new hud();
 }
 
 terrain::~terrain(){
+    delete h;
     for(wall* w: *walls){
-        delete(w);
+        delete w;
     }
     glDeleteTextures(1,&idGroundTex);
     glDeleteLists(idList, 1);

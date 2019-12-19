@@ -14,7 +14,7 @@ int main(int argc, char **args) {
         flow->updateFlow();
     }
 
-    flow->cleanFlow();
+    flow->clearFlow();
     settings->clear();
 
     return 0;

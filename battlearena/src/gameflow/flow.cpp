@@ -12,7 +12,8 @@ flow::~flow(){
 
 }
 void flow::initialize(setup* _settings){
-
+    isRunning = true;
+    settings = _settings;
 }
 
 void flow::updateFlow(){
@@ -52,7 +53,7 @@ void flow::updateWindow(){
     SDL_GL_SwapWindow(settings->getWin());
 }
 
-void flow::cleanFlow(){
+void flow::clearFlow(){
 
 }
 
